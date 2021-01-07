@@ -168,6 +168,7 @@
     <Content Include="Recursos\buscar.png" />
     <Content Include="Recursos\carrito.png" />
     <Content Include="Recursos\close_dark.png" />
+    <Content Include="Recursos\logo.png" />
     <Content Include="Recursos\Miselanea_icons\add_insert_icon_160936.png" />
     <Content Include="Recursos\Miselanea_icons\add_plus_insert_icon_160937.png" />
     <Content Include="Recursos\Miselanea_icons\arrow_left_icon_160934.png" />

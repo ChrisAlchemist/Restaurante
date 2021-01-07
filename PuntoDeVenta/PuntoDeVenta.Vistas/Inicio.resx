@@ -121,19 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAdiAAAHYgE4epnbAAAAB3RJ
-        TUUH5AsWDh8iUQeoFgAAALtJREFUWEftl0EKwjAURF12YdILWM9eKOi5xGsI8b+QQgyWigzGxf/wKEmG
-        dlqYgR56zSMEiGWZh8V5g1oo0c3D8GIgGBfjbtwa2LsaaKS6FCO6PLjiMG3A2amg0k1pHI92zeMG3EB3
-        A+SRaHwSL5mujiHDYjLWN1hhry4YiW5piojpagCxN6Hqxm7ADXxlgDzuNldBpvMm9Cb0GLqBvzJAHneb
-        qyDTtU2ICb7EO+qCkejan9Ofjz3cCPEJKvVfsa7RBXoAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
