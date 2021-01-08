@@ -19,7 +19,9 @@ CREATE proc
 	@precio money,
 	@descripcionProducto varchar(max),
 	@editar bit,
-	@elimiar bit
+	@elimiar bit,
+	@precioCompra money,
+	@cantidadExistencia bigint
 as
 
 	begin -- procedimiento
@@ -53,7 +55,9 @@ as
 						CODIGO = @codigo, 
 						NOMBRE_PRODUCTO = @nombreProducto ,
 						PRECIO = @precio,
-						DESCRIPCION_PRODUCTO = @descripcionProducto
+						DESCRIPCION_PRODUCTO = @descripcionProducto,
+						PRECIO_DE_COMPRA = @precioCompra,
+						CANTIDAD_EXISTENCIA =@cantidadExistencia
 					where ID_PRODUCTO= @numProducto
 					select @estatus = 200, @mensaje = 'Producto editado con exito'
 				end

@@ -202,6 +202,9 @@
   <data name="remove_delete_minus_icon_160894" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\recursos\miselanea_icons\remove_delete_minus_icon_160894.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="savetheapplication_guardar_2958" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\recursos\miselanea_icons\savetheapplication_guardar_2958.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="search_icon_160891" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\recursos\miselanea_icons\search_icon_160891.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

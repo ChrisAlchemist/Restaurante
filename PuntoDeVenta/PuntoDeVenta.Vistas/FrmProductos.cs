@@ -18,6 +18,7 @@ namespace PuntoDeVenta.Vistas
         public bool agregarProductoMesa { get; set; }
         private Producto producto = null;
         private ProductoBLL productoBLL = new ProductoBLL();
+        public int numMesa { get; set; }
 
         public FrmProductos()
         {
@@ -27,12 +28,13 @@ namespace PuntoDeVenta.Vistas
 
         public void AgregarCabecerasGrid()
         {
-            this.dgvProductos.ColumnCount = 5;
+            this.dgvProductos.ColumnCount = 6;
             this.dgvProductos.Columns[0].HeaderText = "No. Producto";
             this.dgvProductos.Columns[1].HeaderText = "Codigo";
             this.dgvProductos.Columns[2].HeaderText = "Nombre Producto";
             this.dgvProductos.Columns[3].HeaderText = "Fecha de Alta";
             this.dgvProductos.Columns[4].HeaderText = "Precio";
+            this.dgvProductos.Columns[5].HeaderText = "Existencia";
 
 
             DataGridViewImageColumn dgvInformacionProducto = new DataGridViewImageColumn();
@@ -41,7 +43,7 @@ namespace PuntoDeVenta.Vistas
             dgvInformacionProducto.Image = Properties.Resources.circle_customer_help_info_information_service_support_icon_123208;
             dgvInformacionProducto.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvInformacionProducto.Tag = "InformacionProducto";
-            this.dgvProductos.Columns.Insert(5, dgvInformacionProducto);
+            this.dgvProductos.Columns.Insert(6, dgvInformacionProducto);
             
 
             DataGridViewImageColumn dgvEliminarProducto = new DataGridViewImageColumn();
@@ -50,7 +52,7 @@ namespace PuntoDeVenta.Vistas
             dgvEliminarProducto.Image = Properties.Resources.remove_delete_minus_icon_160894;
             dgvEliminarProducto.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvEliminarProducto.Tag = "EliminarProducto";
-            this.dgvProductos.Columns.Insert(6, dgvEliminarProducto);
+            this.dgvProductos.Columns.Insert(7, dgvEliminarProducto);
 
             
             DataGridViewImageColumn dgvAgregarProductoMesa = new DataGridViewImageColumn();
@@ -59,7 +61,7 @@ namespace PuntoDeVenta.Vistas
             dgvAgregarProductoMesa.Image = Properties.Resources.add_insert_icon_160936;
             dgvAgregarProductoMesa.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvAgregarProductoMesa.Tag = "AgregarProducto";
-            this.dgvProductos.Columns.Insert(7, dgvAgregarProductoMesa);
+            this.dgvProductos.Columns.Insert(8, dgvAgregarProductoMesa);
             
 
 
@@ -75,7 +77,7 @@ namespace PuntoDeVenta.Vistas
                 dg.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dg.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
                 dg.EnableHeadersVisualStyles = false;
-                dg.DefaultCellStyle.SelectionBackColor = Color.ForestGreen;
+                dg.DefaultCellStyle.SelectionBackColor = Color.Silver;
                 dg.DefaultCellStyle.SelectionForeColor = Color.Black;
                 dg.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
                 dg.MultiSelect = false;
@@ -118,7 +120,7 @@ namespace PuntoDeVenta.Vistas
 
                 foreach (var producto in productos)
                 {
-                    this.dgvProductos.DefaultCellStyle.SelectionBackColor = Color.ForestGreen;
+                    this.dgvProductos.DefaultCellStyle.SelectionBackColor = Color.Silver;
                     this.dgvProductos.DefaultCellStyle.SelectionForeColor = Color.Black;
                     this.dgvProductos.SelectionMode = DataGridViewSelectionMode.CellSelect;
                     this.producto = null;
@@ -129,23 +131,24 @@ namespace PuntoDeVenta.Vistas
                     this.dgvProductos[2, i].Value = this.producto.nombreProducto;
                     this.dgvProductos[3, i].Value = this.producto.fechaAlta.ToShortDateString();
                     this.dgvProductos[4, i].Value = "$ " + this.producto.precio;
+                    this.dgvProductos[5, i].Value = this.producto.cantidadExistencia;
 
                     if (agregarProductoMesa)
                     {
-                        dgvProductos.Columns[5].Visible =
                         dgvProductos.Columns[6].Visible =
+                        dgvProductos.Columns[7].Visible =
                         false;
-                        dgvProductos.Columns[7].Visible = true;
+                        dgvProductos.Columns[8].Visible = true;
                     }
                     else
                     {
 
 
-                        dgvProductos.Columns[5].Visible =
                         dgvProductos.Columns[6].Visible =
+                        dgvProductos.Columns[7].Visible =
                         //dgvProductos.Columns[7].Visible = 
                         true;
-                        dgvProductos.Columns[7].Visible = false;
+                        dgvProductos.Columns[8].Visible = false;
                     }
                     i++;
                 }
@@ -234,7 +237,11 @@ namespace PuntoDeVenta.Vistas
                             break;
 
                         case "AgregarProducto":
-                            MessageBox.Show("Agregar Producto");
+                            //MessageBox.Show("Agregar Producto");
+                            MesaBLL mesaBLL = new MesaBLL();
+                            Result resultado = new Result();
+                            resultado = mesaBLL.AgregarProductoAMesas(numMesa, Convert.ToInt64(dgvProductos[1, e.RowIndex].Value));
+                            Utilidades.MuestraInfo(resultado.mensaje);
                             break;
 
                         default:

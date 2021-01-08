@@ -13,6 +13,8 @@ namespace PuntoDeVenta.Vistas
     {
         private Mesa mesa = null;
         private MesaBLL mesaBLL = new MesaBLL();
+
+        int EnviarFecha = 0;
         public Inicio()
         {
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace PuntoDeVenta.Vistas
                 dg.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dg.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
                 dg.EnableHeadersVisualStyles = false;
-                dg.DefaultCellStyle.SelectionBackColor = Color.ForestGreen;
+                dg.DefaultCellStyle.SelectionBackColor = Color.DarkCyan;//ForestGreen;
                 dg.DefaultCellStyle.SelectionForeColor = Color.Black;
                 dg.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
                 dg.MultiSelect = false;
@@ -106,7 +108,8 @@ namespace PuntoDeVenta.Vistas
         {
             try
             {
-
+                timer1.Interval = 500;
+                timer1.Start();
                 this.CargaMesasGrid();
 
             }
@@ -132,7 +135,7 @@ namespace PuntoDeVenta.Vistas
 
                 foreach (var mesa in mesas)
                 {
-                    this.dgvMesasAsignadas.DefaultCellStyle.SelectionBackColor = Color.ForestGreen;
+                    this.dgvMesasAsignadas.DefaultCellStyle.SelectionBackColor = Color.Silver;//ForestGreen;
                     this.dgvMesasAsignadas.DefaultCellStyle.SelectionForeColor = Color.Black;
                     this.dgvMesasAsignadas.SelectionMode = DataGridViewSelectionMode.CellSelect;
                     this.mesa = null;
@@ -200,6 +203,7 @@ namespace PuntoDeVenta.Vistas
 
                             FrmProductos frmProductos = new FrmProductos();
                             frmProductos.agregarProductoMesa = true;
+                            frmProductos.numMesa = Convert.ToInt32(dgvMesasAsignadas[0, e.RowIndex].Value);
                             frmProductos.ShowDialog();
 
                             break;
@@ -283,6 +287,19 @@ namespace PuntoDeVenta.Vistas
 
                 Utilidades.MuestraErrores(ex.Message);
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            switch (EnviarFecha)
+            {
+                case 0: CapturarFechaSistema(); break;
+            }
+        }
+        private void CapturarFechaSistema()
+        {
+            lblFecha.Text = DateTime.Now.ToShortDateString() +" "+ DateTime.Now.ToShortTimeString();
+            //lblHora.Text = DateTime.Now.ToShortTimeString();
         }
     }
 }

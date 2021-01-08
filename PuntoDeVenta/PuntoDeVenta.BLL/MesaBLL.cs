@@ -65,5 +65,17 @@ namespace PuntoDeVenta.BLL
                 throw ex;
             }
         }
+        public Result AgregarProductoAMesas(int numMesa, Int64 codigoProducto)
+        {
+            try
+            {
+                return mesaDAO.AgregarProductoAMesas(numMesa, codigoProducto);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

@@ -31,6 +31,9 @@ namespace PuntoDeVenta.Vistas
             TxtNombreProducto.Text = producto.nombreProducto.ToString();
             TxtPrecio.Text = producto.precio.ToString();
             txtDescripcion.Text = producto.descripcionProducto.ToString();
+            TxtCantidadExistencia.Text = producto.cantidadExistencia.ToString();
+            TxtPrecioCompra.Text = producto.precioCompra.ToString();
+
             lblTitulo.Text = "Información del Producto";
 
             TxtFechaAlta.ReadOnly =
@@ -38,6 +41,8 @@ namespace PuntoDeVenta.Vistas
             TxtNombreProducto.ReadOnly =
             TxtPrecio.ReadOnly =
             txtDescripcion.ReadOnly =                        
+            TxtPrecioCompra.ReadOnly =                        
+            TxtCantidadExistencia.ReadOnly =                        
             lblFechaAlta.Visible =
             TxtFechaAlta.Visible =            
             btnHabilitarEdicion.Visible = true;
@@ -52,7 +57,9 @@ namespace PuntoDeVenta.Vistas
             TxtCodigo.ReadOnly =
             TxtNombreProducto.ReadOnly =
             TxtPrecio.ReadOnly =
-            txtDescripcion.ReadOnly =            
+            txtDescripcion.ReadOnly =
+            TxtPrecioCompra.ReadOnly =
+            TxtCantidadExistencia.ReadOnly =
             btnHabilitarEdicion.Visible =
             lblFechaAlta.Visible =
             TxtFechaAlta.Visible = 
@@ -81,6 +88,14 @@ namespace PuntoDeVenta.Vistas
                 else if (txtDescripcion.Text == "")
                 {
                     Utilidades.MuestraAdvertencias("Debes de ingresar un descripción de Producto");
+                }
+                else if (TxtPrecioCompra.Text == "")
+                {
+                    Utilidades.MuestraAdvertencias("Debes de ingresar un precio de compra del Producto");
+                }
+                else if (TxtCantidadExistencia.Text == "")
+                {
+                    Utilidades.MuestraAdvertencias("Debes de ingresar una cantidad productos en existencia.");
                 }
                 else
                 {
@@ -132,12 +147,25 @@ namespace PuntoDeVenta.Vistas
         {
             try
             {
+                /*
                 if (Char.IsDigit(e.KeyChar))
                     e.Handled = false;
                 else if ((int)e.KeyChar == (int)ConsoleKey.Backspace)
                     e.Handled = false;
                 else
                     e.Handled = true;
+                */
+
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+                {
+                    e.Handled = true;
+                }
+
+                // solo 1 punto decimal
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -158,6 +186,8 @@ namespace PuntoDeVenta.Vistas
                     producto.nombreProducto = TxtNombreProducto.Text.ToString();
                     producto.descripcionProducto = txtDescripcion.Text.ToString();
                     producto.precio = Convert.ToDouble(TxtPrecio.Text.ToString());
+                    producto.precioCompra = Convert.ToDouble(TxtPrecioCompra.Text.ToString());
+                    producto.cantidadExistencia = Convert.ToInt64(TxtCantidadExistencia.Text.ToString());
 
                     Result resultado = new Result();
                     ProductoBLL productoBLL = new ProductoBLL();
@@ -205,6 +235,8 @@ namespace PuntoDeVenta.Vistas
                     producto.nombreProducto = TxtNombreProducto.Text.ToString();
                     producto.precio = Convert.ToDouble(TxtPrecio.Text.ToString());
                     producto.descripcionProducto = txtDescripcion.Text.ToString();
+                    producto.cantidadExistencia = Convert.ToUInt32(TxtCantidadExistencia.Text.ToString());
+                    producto.precioCompra = Convert.ToDouble( TxtPrecioCompra.Text.ToString());
                     resultado = productoBLL.EditarProducto(producto, true, false);
                     Utilidades.MuestraInfo(resultado.mensaje);
                     MostrarInformacion();
@@ -228,6 +260,44 @@ namespace PuntoDeVenta.Vistas
             {
 
                 Utilidades.MuestraErrores(ex.Message);
+            }
+        }
+
+        private void TxtPrecioCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+                {
+                    e.Handled = true;
+                }
+
+                // solo 1 punto decimal
+                if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void TxtCantidadExistencia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

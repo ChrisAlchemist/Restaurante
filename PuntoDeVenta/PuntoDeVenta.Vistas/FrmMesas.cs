@@ -76,7 +76,7 @@ namespace PuntoDeVenta.Vistas
                 dg.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dg.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
                 dg.EnableHeadersVisualStyles = false;
-                dg.DefaultCellStyle.SelectionBackColor = Color.ForestGreen;
+                dg.DefaultCellStyle.SelectionBackColor = Color.Silver;
                 dg.DefaultCellStyle.SelectionForeColor = Color.Black;
                 dg.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
                 dg.MultiSelect = false;
@@ -119,7 +119,7 @@ namespace PuntoDeVenta.Vistas
 
                 foreach (var mesa in mesas)
                 {
-                    this.dgvMesasDisponibles.DefaultCellStyle.SelectionBackColor = Color.ForestGreen;
+                    this.dgvMesasDisponibles.DefaultCellStyle.SelectionBackColor = Color.Silver;
                     this.dgvMesasDisponibles.DefaultCellStyle.SelectionForeColor = Color.Black;
                     this.dgvMesasDisponibles.SelectionMode = DataGridViewSelectionMode.CellSelect;
                     this.mesa = null;

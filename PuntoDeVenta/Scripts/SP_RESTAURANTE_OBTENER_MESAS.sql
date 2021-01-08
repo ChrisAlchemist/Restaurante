@@ -37,20 +37,21 @@ as
 			begin -- ámbito de la actualización
 
 				select 
-					ID_MESA,
-					NUM_MESA,
-					NOMBRE_MESA,
-					RESERVADA,
-					FECHA_ALTA,
-					HORA_ASIGNACION,
+					mesas.ID_MESA,
+					mesas.NUM_MESA,
+					mesas.NOMBRE_MESA,
+					mesas.RESERVADA,
+					mesas.FECHA_ALTA,
+					mesas.HORA_ASIGNACION,
+					(select sum(precio_producto) from TBL_RESTAURANTE_MESAS_PRODUCTOS where num_mesa =mesas.num_mesa)
 					TOTAL_CUENTA,
-					ASIGNADA
+					mesas.ASIGNADA
 				from 
-					TBL_RESTAURANTE_MESAS
+					TBL_RESTAURANTE_MESAS mesas
 				where
-					ASIGNADA = @asiganda 
+					mesas.ASIGNADA = 1 
 				and
-					ACTIVA = 1	
+					mesas.ACTIVA = 1	
 				order by FECHA_ALTA
 			
 			end -- ámbito de la actualización

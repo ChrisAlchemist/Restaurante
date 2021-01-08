@@ -39,15 +39,15 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnAgregarMesa = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -60,14 +60,13 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.12454F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.22535F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.52113F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1200, 293);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 190);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // tableLayoutPanel3
@@ -84,22 +83,20 @@
             this.tableLayoutPanel3.Controls.Add(this.TxtNombreMesa, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.label25, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 125);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 81);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.00319F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.9992F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1192, 73);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(794, 48);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // TxtNumMesa
             // 
             this.TxtNumMesa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtNumMesa.Location = new System.Drawing.Point(777, 5);
-            this.TxtNumMesa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtNumMesa.Location = new System.Drawing.Point(518, 3);
             this.TxtNumMesa.Name = "TxtNumMesa";
-            this.TxtNumMesa.Size = new System.Drawing.Size(290, 26);
+            this.TxtNumMesa.Size = new System.Drawing.Size(192, 20);
             this.TxtNumMesa.TabIndex = 51;
             this.TxtNumMesa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumMesa_KeyPress);
             // 
@@ -107,30 +104,27 @@
             // 
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(599, 8);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(399, 5);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(170, 20);
+            this.label23.Size = new System.Drawing.Size(113, 13);
             this.label23.TabIndex = 48;
             this.label23.Text = "Numero de mesa:";
             // 
             // TxtNombreMesa
             // 
             this.TxtNombreMesa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtNombreMesa.Location = new System.Drawing.Point(301, 5);
-            this.TxtNombreMesa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtNombreMesa.Location = new System.Drawing.Point(201, 3);
             this.TxtNombreMesa.Name = "TxtNombreMesa";
-            this.TxtNombreMesa.Size = new System.Drawing.Size(290, 26);
+            this.TxtNombreMesa.Size = new System.Drawing.Size(192, 20);
             this.TxtNombreMesa.TabIndex = 25;
             // 
             // label25
             // 
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(123, 8);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(82, 5);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(170, 20);
+            this.label25.Size = new System.Drawing.Size(113, 13);
             this.label25.TabIndex = 52;
             this.label25.Text = "Nombre de mesa:";
             // 
@@ -142,14 +136,13 @@
             this.tableLayoutPanel10.Controls.Add(this.label28, 0, 2);
             this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel11, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(4, 5);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 3;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.19418F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.18447F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.12121F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(1192, 110);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(794, 72);
             this.tableLayoutPanel10.TabIndex = 3;
             // 
             // lblTitulo
@@ -157,21 +150,19 @@
             this.lblTitulo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(533, 71);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitulo.Location = new System.Drawing.Point(354, 46);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(126, 20);
+            this.lblTitulo.Size = new System.Drawing.Size(85, 13);
             this.lblTitulo.TabIndex = 21;
             this.lblTitulo.Text = "Agregar Mesa";
             // 
             // label28
             // 
-            this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label28.BackColor = System.Drawing.Color.Silver;
             this.label28.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label28.Location = new System.Drawing.Point(4, 96);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label28.Location = new System.Drawing.Point(3, 62);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(1184, 3);
+            this.label28.Size = new System.Drawing.Size(788, 2);
             this.label28.TabIndex = 22;
             // 
             // tableLayoutPanel11
@@ -183,50 +174,47 @@
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.738095F));
             this.tableLayoutPanel11.Controls.Add(this.pictureBox2, 3, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(4, 5);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 1;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(1184, 56);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(788, 37);
             this.tableLayoutPanel11.TabIndex = 23;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1095, 5);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(54, 40);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 3;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.53093F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.46907F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 414F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 277F));
             this.tableLayoutPanel4.Controls.Add(this.btnAgregarMesa, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 208);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 135);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1191, 71);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(794, 46);
             this.tableLayoutPanel4.TabIndex = 4;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(729, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 26);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // btnAgregarMesa
             // 
             this.btnAgregarMesa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAgregarMesa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarMesa.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarMesa.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarMesa.Image")));
             this.btnAgregarMesa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarMesa.Location = new System.Drawing.Point(497, 5);
-            this.btnAgregarMesa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAgregarMesa.Location = new System.Drawing.Point(331, 3);
             this.btnAgregarMesa.Name = "btnAgregarMesa";
-            this.btnAgregarMesa.Size = new System.Drawing.Size(275, 61);
+            this.btnAgregarMesa.Size = new System.Drawing.Size(182, 40);
             this.btnAgregarMesa.TabIndex = 0;
             this.btnAgregarMesa.Text = "Agregar Mesa";
             this.btnAgregarMesa.UseVisualStyleBackColor = true;
@@ -234,13 +222,12 @@
             // 
             // FrmAgregarMesa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1200, 293);
+            this.ClientSize = new System.Drawing.Size(800, 190);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmAgregarMesa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -249,8 +236,8 @@
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }

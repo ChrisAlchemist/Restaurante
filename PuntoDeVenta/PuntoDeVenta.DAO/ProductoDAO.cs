@@ -41,6 +41,8 @@ namespace PuntoDeVenta.DAO
                         producto.fechaAlta = Convert.ToDateTime(db.DataReader["FECHA_ALTA"].ToString());
                         producto.precio = Convert.ToDouble(db.DataReader["PRECIO"].ToString());
                         producto.activo = Convert.ToBoolean(db.DataReader["ACTIVO"].ToString());
+                        producto.precioCompra = db.DataReader["PRECIO_DE_COMPRA"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["PRECIO_DE_COMPRA"].ToString());
+                        producto.cantidadExistencia = db.DataReader["CANTIDAD_EXISTENCIA"] == DBNull.Value ? 0: Convert.ToInt64(db.DataReader["CANTIDAD_EXISTENCIA"].ToString());
                         productos.Add(producto);
 
                     }
@@ -61,11 +63,13 @@ namespace PuntoDeVenta.DAO
                 using (db = new DBManager(System.Configuration.ConfigurationManager.AppSettings["Instancia"]))
                 {
                     db.Open();
-                    db.CreateParameters(4);
+                    db.CreateParameters(6);
                     db.AddParameters(0, "@codigo", producto.codigo);
                     db.AddParameters(1, "@nombreProducto", producto.nombreProducto);
                     db.AddParameters(2, "@descripcionProducto", producto.descripcionProducto);
                     db.AddParameters(3, "@precio", producto.precio);
+                    db.AddParameters(4, "@precioCompra", producto.precioCompra);
+                    db.AddParameters(5, "@cantidadExistencia", producto.cantidadExistencia);
 
                     db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_AGREGAR_PRODUCTO");
 
@@ -112,9 +116,11 @@ namespace PuntoDeVenta.DAO
                         producto.nombreProducto = db.DataReader["NOMBRE_PRODUCTO"].ToString().ToUpper();
                         producto.descripcionProducto = db.DataReader["DESCRIPCION_PRODUCTO"].ToString().ToUpper();
                         producto.fechaAlta = Convert.ToDateTime(db.DataReader["FECHA_ALTA"].ToString());
-                        producto.precio = Convert.ToDouble(db.DataReader["PRECIO"].ToString());
+                        producto.precio = Convert.ToDouble(db.DataReader["PRECIO"].ToString());                        
                         producto.activo = Convert.ToBoolean(db.DataReader["ACTIVO"].ToString());
-                        
+                        producto.precioCompra = db.DataReader["PRECIO_DE_COMPRA"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["PRECIO_DE_COMPRA"].ToString());
+                        producto.cantidadExistencia = db.DataReader["CANTIDAD_EXISTENCIA"] == DBNull.Value ? 0 : Convert.ToInt64(db.DataReader["CANTIDAD_EXISTENCIA"].ToString());
+
                     }
                 }
             }
@@ -125,7 +131,7 @@ namespace PuntoDeVenta.DAO
             return producto;
         }
 
-        public Result EditarProducto(Producto producto, bool editarProducto, bool eliminarProdcuto)
+        public Result EditarProducto(Producto producto, bool editarProducto, bool eliminarProducto)
         {
             Result resultado = new Result();
             try
@@ -133,14 +139,16 @@ namespace PuntoDeVenta.DAO
                 using (db = new DBManager(System.Configuration.ConfigurationManager.AppSettings["Instancia"]))
                 {
                     db.Open();
-                    db.CreateParameters(7);
+                    db.CreateParameters(9);
                     db.AddParameters(0, "@numProducto", producto.idProducto);
                     db.AddParameters(1, "@codigo", producto.codigo);
                     db.AddParameters(2, "@nombreProducto", producto.nombreProducto);
                     db.AddParameters(3, "@precio", producto.precio);
                     db.AddParameters(4, "@descripcionProducto", producto.descripcionProducto);
                     db.AddParameters(5, "@editar", editarProducto);
-                    db.AddParameters(6, "@elimiar", eliminarProdcuto);
+                    db.AddParameters(6, "@elimiar", eliminarProducto);
+                    db.AddParameters(7, "@precioCompra", producto.precioCompra);
+                    db.AddParameters(8, "@cantidadExistencia", producto.cantidadExistencia);
 
                     db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_EDITAR_PRODUCTO");
 

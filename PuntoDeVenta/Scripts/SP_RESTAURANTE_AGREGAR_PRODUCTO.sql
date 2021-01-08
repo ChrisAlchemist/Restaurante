@@ -17,7 +17,9 @@ CREATE proc
 	@codigo bigint,
 	@nombreProducto varchar(max),
 	@descripcionProducto varchar(max),
-	@precio money
+	@precio money,
+	@precioCompra money,
+	@cantidadExistencia bigint
 
 
 as
@@ -43,15 +45,15 @@ as
 
 				if not exists (select 1 from PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS where CODIGO = @codigo)
 				begin
-					insert into PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS(CODIGO,NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO,FECHA_ALTA,PRECIO, ACTIVO)
-					values (@codigo,@nombreProducto,@descripcionProducto,GETDATE(), @precio,  1) 
+					insert into PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS(CODIGO,NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO,FECHA_ALTA,PRECIO, ACTIVO, PRECIO_DE_COMPRA, CANTIDAD_EXISTENCIA)
+					values (@codigo,@nombreProducto,@descripcionProducto,GETDATE(), @precio,  1, @precioCompra, @cantidadExistencia) 
 
 					select @estatus = 200, @mensaje = 'Producto agregado exitosamente.'
 
 				end
 				else
 				begin
-					if exists (select 1 from PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS where CODIGO = @codigo and ACTIVo = 0)
+					if exists (select 1 from PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS where CODIGO = @codigo and ACTIVO = 0)
 					begin
 						update 
 							PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS 
@@ -61,7 +63,9 @@ as
 							DESCRIPCION_PRODUCTO = @descripcionProducto,
 							FECHA_ALTA = GETDATE(), 
 							PRECIO = @precio, 													
-							ACTIVO = 1
+							ACTIVO = 1,
+							PRECIO_DE_COMPRA =  @precioCompra, 
+							CANTIDAD_EXISTENCIA = @cantidadExistencia
 						WHERE 
 							CODIGO = @codigo
 						and 

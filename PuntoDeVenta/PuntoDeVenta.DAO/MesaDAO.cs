@@ -39,7 +39,7 @@ namespace PuntoDeVenta.DAO
                         mesa.fechaAlta = Convert.ToDateTime(db.DataReader["FECHA_ALTA"].ToString());
                         //mesa.horaAsignacion = Convert.ToDateTime(db.DataReader["HORA_ASIGNACION"].ToString());
                         mesa.horaAsignacion = db.DataReader["HORA_ASIGNACION"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(db.DataReader["HORA_ASIGNACION"].ToString());
-                        mesa.totalCuenta = Convert.ToDouble(db.DataReader["TOTAL_CUENTA"].ToString());
+                        mesa.totalCuenta = db.DataReader["TOTAL_CUENTA"] == DBNull.Value ? 0: Convert.ToDouble(db.DataReader["TOTAL_CUENTA"].ToString());
                         mesa.asignada = Convert.ToBoolean(db.DataReader["ASIGNADA"].ToString());
 
                         mesas.Add(mesa);
@@ -106,6 +106,42 @@ namespace PuntoDeVenta.DAO
                     db.AddParameters(4, "@elimiar", eliminarMesa);
 
                     db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_EDITAR_MESA");
+
+                    if (db.DataReader.Read())
+                    {
+                        resultado.estatus = Convert.ToInt32(db.DataReader["ESTATUS"].ToString());
+
+                        if (resultado.estatus == 200)
+                        {
+                            resultado.mensaje = db.DataReader["MENSAJE"].ToString();
+                        }
+                        else
+                        {
+                            resultado.mensaje = db.DataReader["error_message"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return resultado;
+        }
+        public Result AgregarProductoAMesas(int numMesa, Int64 codigoProducto)
+        {
+            Result resultado = new Result();
+            try
+            {
+                using (db = new DBManager(System.Configuration.ConfigurationManager.AppSettings["Instancia"]))
+                {
+                    db.Open();
+                    db.CreateParameters(2);
+                    db.AddParameters(0, "@numMesa", numMesa);
+                    db.AddParameters(1, "@codigoProducto", codigoProducto);
+                    
+
+                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_AGREGAR_PRODUCTO_A_MESA");
 
                     if (db.DataReader.Read())
                     {

@@ -15,5 +15,7 @@ namespace PuntoDeVenta.Entidades
         public DateTime fechaAlta { get; set; }
         public double precio { get; set; }
         public bool activo { get; set; }
+        public double precioCompra { get; set; }
+        public Int64 cantidadExistencia { get; set; }
     }
 }
