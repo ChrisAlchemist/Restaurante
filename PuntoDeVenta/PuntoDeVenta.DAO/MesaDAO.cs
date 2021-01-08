@@ -165,6 +165,39 @@ namespace PuntoDeVenta.DAO
             return resultado;
         }
 
+        public List<Producto> ObtenerProductoAMesa(Mesa mesa)
+        {
+            List<Producto> mesas = new List<Producto>();
+            try
+            {
+                using (db = new DBManager(System.Configuration.ConfigurationManager.AppSettings["Instancia"]))
+                {
+                    db.Open();
+                    db.CreateParameters(1);
+                    db.AddParameters(0, "@numMesa", mesa.numeroMesa);
+
+                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_OBTENER_TOTAL_PRODUCTOS_MESA");
+                    while (db.DataReader.Read())
+                    {
+                        Producto producto = new Producto();
+
+                        producto.codigo = Convert.ToInt64(db.DataReader["CODIGO_PRODUCTO"].ToString().ToUpper());                        
+                        producto.nombreProducto = db.DataReader["NOMBRE_PRODUCTO"].ToString().ToUpper();                        
+                        producto.fechaAlta = Convert.ToDateTime(db.DataReader["FECHA_ALTA"].ToString());
+                        producto.precio = db.DataReader["PRECIO_PRODUCTO"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["PRECIO_PRODUCTO"].ToString());
+                        
+                        mesas.Add(producto);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return mesas;
+        }
+
         #endregion
     }
 }

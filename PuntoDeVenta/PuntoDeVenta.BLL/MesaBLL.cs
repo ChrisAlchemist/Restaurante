@@ -77,5 +77,18 @@ namespace PuntoDeVenta.BLL
                 throw ex;
             }
         }
+
+        public List<Producto> ObtenerProductosMesa(Mesa mesa)
+        {
+            try
+            {
+                return mesaDAO.ObtenerProductoAMesa(mesa);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

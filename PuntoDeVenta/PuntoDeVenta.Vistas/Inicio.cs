@@ -210,6 +210,15 @@ namespace PuntoDeVenta.Vistas
 
                         case "Cobrar": //"Desbloquear";
                             FrmGenerarCuenta frmGenerarCuenta = new FrmGenerarCuenta();
+                            Mesa mesaACobrar = new Mesa();
+                            mesaACobrar.numeroMesa = Convert.ToInt32(dgvMesasAsignadas[0, e.RowIndex].Value);
+                            mesaACobrar.nombreMesa = dgvMesasAsignadas[1, e.RowIndex].Value.ToString();
+                            mesaACobrar.horaAsignacion = Convert.ToDateTime(dgvMesasAsignadas[2, e.RowIndex].Value);
+                            mesaACobrar.totalCuenta = Convert.ToDouble(dgvMesasAsignadas[4, e.RowIndex].Value.ToString().Replace("$",""));
+
+                            frmGenerarCuenta.mesa = mesaACobrar;
+                            
+
                             //frmGenerarCuenta.socio = (Socio)this.dgvSocios[0, e.RowIndex].Tag;
                             //frmGenerarCuenta.socio.TipoBitacora = TipoBitacora.desbloqueo_de_cuenta_desde_sucursal;
                             frmGenerarCuenta.ShowDialog();
