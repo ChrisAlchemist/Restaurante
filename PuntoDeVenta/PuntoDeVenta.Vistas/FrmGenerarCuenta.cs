@@ -110,15 +110,10 @@ namespace PuntoDeVenta.Vistas
                     this.dgvProductosMesa[2, i].Value = this.producto.nombreProducto;
                     this.dgvProductosMesa[3, i].Value = "$" + this.producto.precio;
                     
-
                     dgvProductosMesa.Columns[4].Visible = true;
                     i++;
                 }
-
-
             }
-
-
             catch (Exception ex)
             {
                 Utilidades.MuestraErrores(ex.Message);
@@ -148,6 +143,23 @@ namespace PuntoDeVenta.Vistas
                     LblTotalCuenta.Text = "$ " + mesa.totalCuenta;
                     this.CargaMesasGrid();
                 }
+            }
+            catch (Exception ex)
+            {
+
+                Utilidades.MuestraErrores(ex.Message);
+            }
+        }
+
+        private void BtnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmProductos frmProductos = new FrmProductos();
+                frmProductos.agregarProductoMesa = true;
+                frmProductos.numMesa = Convert.ToInt32(mesa.numeroMesa);
+                frmProductos.ShowDialog();
+                CargaMesasGrid();
             }
             catch (Exception ex)
             {

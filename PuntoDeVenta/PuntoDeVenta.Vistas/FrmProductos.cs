@@ -28,14 +28,16 @@ namespace PuntoDeVenta.Vistas
 
         public void AgregarCabecerasGrid()
         {
-            this.dgvProductos.ColumnCount = 6;
+            this.dgvProductos.ColumnCount = 7;
             this.dgvProductos.Columns[0].HeaderText = "No. Producto";
             this.dgvProductos.Columns[1].HeaderText = "Codigo";
             this.dgvProductos.Columns[2].HeaderText = "Nombre Producto";
             this.dgvProductos.Columns[3].HeaderText = "Fecha de Alta";
             this.dgvProductos.Columns[4].HeaderText = "Precio";
             this.dgvProductos.Columns[5].HeaderText = "Existencia";
+            this.dgvProductos.Columns[6].HeaderText = "Cantidad a agregar";
 
+            this.dgvProductos.Columns[6].Tag = "ProductosAAgregar";
 
             DataGridViewImageColumn dgvInformacionProducto = new DataGridViewImageColumn();
             dgvInformacionProducto.HeaderText = "Información Producto";
@@ -43,7 +45,7 @@ namespace PuntoDeVenta.Vistas
             dgvInformacionProducto.Image = Properties.Resources.circle_customer_help_info_information_service_support_icon_123208;
             dgvInformacionProducto.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvInformacionProducto.Tag = "InformacionProducto";
-            this.dgvProductos.Columns.Insert(6, dgvInformacionProducto);
+            this.dgvProductos.Columns.Insert(7, dgvInformacionProducto);
             
 
             DataGridViewImageColumn dgvEliminarProducto = new DataGridViewImageColumn();
@@ -52,7 +54,7 @@ namespace PuntoDeVenta.Vistas
             dgvEliminarProducto.Image = Properties.Resources.remove_delete_minus_icon_160894;
             dgvEliminarProducto.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvEliminarProducto.Tag = "EliminarProducto";
-            this.dgvProductos.Columns.Insert(7, dgvEliminarProducto);
+            this.dgvProductos.Columns.Insert(8, dgvEliminarProducto);
 
             
             DataGridViewImageColumn dgvAgregarProductoMesa = new DataGridViewImageColumn();
@@ -61,7 +63,7 @@ namespace PuntoDeVenta.Vistas
             dgvAgregarProductoMesa.Image = Properties.Resources.add_insert_icon_160936;
             dgvAgregarProductoMesa.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvAgregarProductoMesa.Tag = "AgregarProducto";
-            this.dgvProductos.Columns.Insert(8, dgvAgregarProductoMesa);
+            this.dgvProductos.Columns.Insert(9, dgvAgregarProductoMesa);
             
 
 
@@ -89,7 +91,19 @@ namespace PuntoDeVenta.Vistas
                 dg.SelectionMode = DataGridViewSelectionMode.CellSelect;
                 dg.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
                 dg.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
-                dg.ReadOnly = true;
+                foreach (DataGridViewBand band in dg.Columns)
+                {
+                    if(band.Tag == "ProductosAAgregar")
+                    {
+                        band.ReadOnly = false;
+                    }
+                    else
+                    {
+                        band.ReadOnly = true;
+                    }
+                    
+                }
+                //dg.ReadOnly = true;
                 dg.RowHeadersVisible = false;
                 dg.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                 dg.BackgroundColor = Color.White;
@@ -132,23 +146,26 @@ namespace PuntoDeVenta.Vistas
                     this.dgvProductos[3, i].Value = this.producto.fechaAlta.ToShortDateString();
                     this.dgvProductos[4, i].Value = "$ " + this.producto.precio;
                     this.dgvProductos[5, i].Value = this.producto.cantidadExistencia;
+                    
 
                     if (agregarProductoMesa)
                     {
-                        dgvProductos.Columns[6].Visible =
+                        this.dgvProductos[6, i].Value = 0;
                         dgvProductos.Columns[7].Visible =
+                        dgvProductos.Columns[8].Visible =
                         false;
-                        dgvProductos.Columns[8].Visible = true;
+                        dgvProductos.Columns[9].Visible = true;
                     }
                     else
                     {
 
 
-                        dgvProductos.Columns[6].Visible =
                         dgvProductos.Columns[7].Visible =
+                        dgvProductos.Columns[8].Visible =
                         //dgvProductos.Columns[7].Visible = 
                         true;
-                        dgvProductos.Columns[8].Visible = false;
+                        dgvProductos.Columns[6].Visible =
+                        dgvProductos.Columns[9].Visible = false;
                     }
                     i++;
                 }
@@ -185,7 +202,7 @@ namespace PuntoDeVenta.Vistas
         {
             try
             {
-                if (e.ColumnIndex >= 5)
+                if (e.ColumnIndex >= 6)
                 {
                     string NombreFrm = this.dgvProductos.Columns[e.ColumnIndex].Tag.ToString().Replace(" ", "");
                     switch (NombreFrm)
@@ -240,10 +257,31 @@ namespace PuntoDeVenta.Vistas
                             //MessageBox.Show("Agregar Producto");
                             MesaBLL mesaBLL = new MesaBLL();
                             Result resultado = new Result();
-                            resultado = mesaBLL.AgregarProductoAMesas(numMesa, Convert.ToInt64(dgvProductos[1, e.RowIndex].Value));
-                            Utilidades.MuestraInfo(resultado.mensaje);
+                            int totalproductos = Convert.ToInt32(dgvProductos[6, e.RowIndex].Value);
+                            if (totalproductos < 1)
+                            {
+                                Utilidades.MuestraAdvertencias("Debes de ingresar una cantidad a de productos");
+                            }
+                            else
+                            {
+                                if (agregarProductoMesa)
+                                {
+                                    for (int i = 0; i < totalproductos; i++)
+                                    {
+                                        resultado = mesaBLL.AgregarProductoAMesas(numMesa, Convert.ToInt64(dgvProductos[1, e.RowIndex].Value));
+                                    }
+                                    Utilidades.MuestraInfo(resultado.mensaje);
+                                }
+                                
+                            }
+                            
                             break;
-
+                            /*
+                        case "ProductosAAgregar":
+                            //Utilidades.MuestraInfo("ProductosAAgregar");
+                            dgvProductos[6, e.RowIndex].ReadOnly = false;
+                            break;
+                            */
                         default:
                             break;
                     }
@@ -321,6 +359,33 @@ namespace PuntoDeVenta.Vistas
             try
             {
                // toolTip1.Show("Buscar", btnAgregarProducto);
+            }
+            catch (Exception ex)
+            {
+
+                Utilidades.MuestraErrores(ex.Message);
+            }
+        }
+
+        private void dgvProductos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int productosAAgregar;
+                if (dgvProductos.Columns[e.ColumnIndex].Tag == "ProductosAAgregar")
+                {
+                    try
+                    {
+                        productosAAgregar = Convert.ToInt32(dgvProductos[6, e.RowIndex].Value);
+                        //Utilidades.MuestraInfo(productosAAgregar + "");
+                    }
+                    catch (Exception)
+                    {
+
+                        Utilidades.MuestraErrores("debes de ingresar una cantidad correcta");
+                    }
+                    
+                }
             }
             catch (Exception ex)
             {

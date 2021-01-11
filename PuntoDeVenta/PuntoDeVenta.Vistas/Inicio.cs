@@ -233,7 +233,7 @@ namespace PuntoDeVenta.Vistas
             catch (Exception ex)
             {
 
-                throw ex;
+                Utilidades.MuestraErrores(ex.Message);            
             }
         }
 
