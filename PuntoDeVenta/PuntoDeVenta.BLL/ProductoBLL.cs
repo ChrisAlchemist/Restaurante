@@ -76,5 +76,18 @@ namespace PuntoDeVenta.BLL
             }
         }
 
+        public Result EliminarProductoMesa(Producto producto, Mesa mesa)
+        {
+            try
+            {
+                return productoDAO.EliminarProductoMesa(producto, mesa);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }

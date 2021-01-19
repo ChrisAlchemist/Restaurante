@@ -176,16 +176,19 @@ namespace PuntoDeVenta.DAO
                     db.CreateParameters(1);
                     db.AddParameters(0, "@numMesa", mesa.numeroMesa);
 
-                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_OBTENER_TOTAL_PRODUCTOS_MESA");
+                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_OBTENERL_PRODUCTOS_AGRUPADOS_MESA");
                     while (db.DataReader.Read())
                     {
                         Producto producto = new Producto();
 
                         producto.codigo = Convert.ToInt64(db.DataReader["CODIGO_PRODUCTO"].ToString().ToUpper());                        
                         producto.nombreProducto = db.DataReader["NOMBRE_PRODUCTO"].ToString().ToUpper();                        
-                        producto.fechaAlta = Convert.ToDateTime(db.DataReader["FECHA_ALTA"].ToString());
+                        //producto.fechaAlta = Convert.ToDateTime(db.DataReader["FECHA_ALTA"].ToString());
                         producto.precio = db.DataReader["PRECIO_PRODUCTO"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["PRECIO_PRODUCTO"].ToString());
                         
+                        producto.totalProductos = db.DataReader["TOTAL_PRODUCTOS"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["TOTAL_PRODUCTOS"].ToString());
+                        producto.cantidadProductos = Convert.ToInt32(db.DataReader["CANTIDAD_PRODUCTOS"].ToString());
+
                         mesas.Add(producto);
 
                     }

@@ -17,5 +17,8 @@ namespace PuntoDeVenta.Entidades
         public bool activo { get; set; }
         public double precioCompra { get; set; }
         public Int64 cantidadExistencia { get; set; }
+
+        public int cantidadProductos { get; set; }
+        public double totalProductos { get; set; }
     }
 }

@@ -174,6 +174,41 @@ namespace PuntoDeVenta.DAO
             return resultado;
         }
 
+        public Result EliminarProductoMesa(Producto producto, Mesa mesa)
+        {
+            Result resultado = new Result();
+            try
+            {
+                using (db = new DBManager(System.Configuration.ConfigurationManager.AppSettings["Instancia"]))
+                {
+                    db.Open();
+                    db.CreateParameters(2);
+                    db.AddParameters(0, "@codigo", producto.codigo);
+                    db.AddParameters(1, "@numMesa", mesa.numeroMesa);
+                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_ELIMINAR_PRODUCTO_MESA");
+
+                    if (db.DataReader.Read())
+                    {
+                        resultado.estatus = Convert.ToInt32(db.DataReader["ESTATUS"].ToString());
+
+                        if (resultado.estatus == 200)
+                        {
+                            resultado.mensaje = db.DataReader["MENSAJE"].ToString();
+                        }
+                        else
+                        {
+                            resultado.mensaje = db.DataReader["error_message"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return resultado;
+        }
+
 
     }
     #endregion Funciones

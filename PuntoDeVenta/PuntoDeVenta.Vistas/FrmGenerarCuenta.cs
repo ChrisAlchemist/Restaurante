@@ -26,12 +26,14 @@ namespace PuntoDeVenta.Vistas
 
         public void AgregarCabecerasGrid()
         {
-            this.dgvProductosMesa.ColumnCount = 4;
+            this.dgvProductosMesa.ColumnCount = 5;
             //this.dgvMesasAsignadas.Columns[0].HeaderText = "Ticket";
-            this.dgvProductosMesa.Columns[0].HeaderText = "Hora de Asinacion";
+            this.dgvProductosMesa.Columns[0].HeaderText = "Cantidad";
             this.dgvProductosMesa.Columns[1].HeaderText = "Codigo";
             this.dgvProductosMesa.Columns[2].HeaderText = "Producto";                        
             this.dgvProductosMesa.Columns[3].HeaderText = "Precio";            
+            this.dgvProductosMesa.Columns[4].HeaderText = "Total del producto";            
+              
             
 
             DataGridViewImageColumn dgvAgregarProducto = new DataGridViewImageColumn();
@@ -40,7 +42,7 @@ namespace PuntoDeVenta.Vistas
             dgvAgregarProducto.Image = Properties.Resources.remove_delete_minus_icon_160894;
             dgvAgregarProducto.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvAgregarProducto.Tag = "EliminarProducto";
-            this.dgvProductosMesa.Columns.Insert(4, dgvAgregarProducto);
+            this.dgvProductosMesa.Columns.Insert(5, dgvAgregarProducto);
 
            
             EstiloGrid(this.dgvProductosMesa);
@@ -105,12 +107,13 @@ namespace PuntoDeVenta.Vistas
                     this.producto = producto;
 
                     //this.dgvMesasAsignadas[0, i].Value = this.mesa.idMesa;
-                    this.dgvProductosMesa[0, i].Value = this.producto.fechaAlta.ToShortTimeString();
+                    this.dgvProductosMesa[0, i].Value = this.producto.cantidadProductos;
                     this.dgvProductosMesa[1, i].Value = this.producto.codigo;
                     this.dgvProductosMesa[2, i].Value = this.producto.nombreProducto;
                     this.dgvProductosMesa[3, i].Value = "$" + this.producto.precio;
+                    this.dgvProductosMesa[4, i].Value = "$" + this.producto.totalProductos;
                     
-                    dgvProductosMesa.Columns[4].Visible = true;
+                    dgvProductosMesa.Columns[5].Visible = true;
                     i++;
                 }
             }
@@ -160,6 +163,49 @@ namespace PuntoDeVenta.Vistas
                 frmProductos.numMesa = Convert.ToInt32(mesa.numeroMesa);
                 frmProductos.ShowDialog();
                 CargaMesasGrid();
+            }
+            catch (Exception ex)
+            {
+
+                Utilidades.MuestraErrores(ex.Message);
+            }
+        }
+
+        private void dgvProductosMesa_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex >= 5)
+                {
+                    string NombreFrm = this.dgvProductosMesa.Columns[e.ColumnIndex].Tag.ToString().Replace(" ", "");
+                    switch (NombreFrm)
+                    {
+
+
+                        case "EliminarProducto": //"Desbloquear";
+                            FrmEliminarProducto frmEliminarProducto = new FrmEliminarProducto();
+                            Producto producto = new Producto();
+                            frmEliminarProducto.mesa = mesa;
+
+                            producto.nombreProducto = dgvProductosMesa[2, e.RowIndex].Value.ToString();
+                            producto.codigo = Convert.ToInt64(dgvProductosMesa[1, e.RowIndex].Value.ToString());
+                            producto.cantidadProductos = Convert.ToInt32(dgvProductosMesa[0, e.RowIndex].Value.ToString());
+                            frmEliminarProducto.producto = producto;
+
+                            frmEliminarProducto.ShowDialog();
+
+                            //Utilidades.MuestraPregunta("¿Cantidad de " + dgvProductosMesa[2, e.RowIndex].Value.ToString()+ " que deseas eliminar de la cuenta?");
+
+                            //dgvProductosMesa[1, e.RowIndex].Value.ToString();
+                            
+
+                            break;
+                        default:
+                            break;
+                    }
+                    //this.CargaMesasGrid();
+                    FrmGenerarCuenta_Load(null,null);
+                }
             }
             catch (Exception ex)
             {

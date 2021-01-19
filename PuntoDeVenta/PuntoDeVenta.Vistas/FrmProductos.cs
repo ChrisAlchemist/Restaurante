@@ -333,6 +333,7 @@ namespace PuntoDeVenta.Vistas
                 FrmAgregarProducto frmAgregarProducto = new FrmAgregarProducto();
                 frmAgregarProducto.mostrarInfo = false;
                 frmAgregarProducto.ShowDialog();
+                FrmProductos_Load(null, null);
             }
             catch (Exception ex)
             {

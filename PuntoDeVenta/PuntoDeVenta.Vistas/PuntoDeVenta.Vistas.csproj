@@ -93,6 +93,12 @@
     <Compile Include="FrmDesbloqueoAcceso.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmEliminarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEliminarProducto.Designer.cs">
+      <DependentUpon>FrmEliminarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGenerarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAsignarTotalMesas.resx">
       <DependentUpon>FrmAsignarTotalMesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEliminarProducto.resx">
+      <DependentUpon>FrmEliminarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGenerarCuenta.resx">
       <DependentUpon>FrmGenerarCuenta.cs</DependentUpon>
