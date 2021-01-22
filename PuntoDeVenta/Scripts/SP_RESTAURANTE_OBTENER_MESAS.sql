@@ -29,13 +29,14 @@ as
 						@error_line varchar(255) = '',
 						@error_severity varchar(255) = '',
 						@error_procedure varchar(255) = '',
-						@mensaje varchar(max) = ''						
+						@mensaje varchar(max) = '',
+						@ticket varchar(12)
 
 					
 			end -- inicio
 			
 			begin -- ámbito de la actualización
-
+				
 				select 
 					mesas.ID_MESA,
 					mesas.NUM_MESA,
@@ -43,13 +44,13 @@ as
 					mesas.RESERVADA,
 					mesas.FECHA_ALTA,
 					mesas.HORA_ASIGNACION,
-					(select sum(precio_producto) from TBL_RESTAURANTE_MESAS_PRODUCTOS where num_mesa =mesas.num_mesa)
+					(select sum(precio_producto) from TBL_RESTAURANTE_MESAS_PRODUCTOS where num_mesa =mesas.num_mesa and PAGADO =0)
 					TOTAL_CUENTA,
 					mesas.ASIGNADA
 				from 
 					TBL_RESTAURANTE_MESAS mesas
 				where
-					mesas.ASIGNADA = 1 
+					mesas.ASIGNADA = @asiganda
 				and
 					mesas.ACTIVA = 1	
 				order by FECHA_ALTA

@@ -60,6 +60,14 @@ as
 							set @mensaje = 'Mesa reservada con exito'
 						else
 							set @mensaje = 'Mesa asignada con exito'
+						
+						declare @ticket varchar(12)
+						select @ticket = concat((REPLACE(STR('', 11-len(@ticket)), SPACE(1), '0')) , case when  max(ID_TICKET) is null then 1 else max(ID_TICKET) +1 end)
+						from TBL_RESTAURANTE_TICKETS_VENTA
+				
+						insert into PuntoDeVenta..TBL_RESTAURANTE_TICKETS_VENTA(TICKET,NUM_MESA, NUM_VENTA,FECHA_ALTA, TICKET_CERRADO)
+						values (@ticket,@numMesa,null,GETDATE(), 0) 
+
 					end
 					else
 					begin

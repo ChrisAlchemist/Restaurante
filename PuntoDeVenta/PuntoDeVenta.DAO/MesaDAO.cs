@@ -176,7 +176,7 @@ namespace PuntoDeVenta.DAO
                     db.CreateParameters(1);
                     db.AddParameters(0, "@numMesa", mesa.numeroMesa);
 
-                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_OBTENERL_PRODUCTOS_AGRUPADOS_MESA");
+                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_OBTENER_PRODUCTOS_AGRUPADOS_MESA");
                     while (db.DataReader.Read())
                     {
                         Producto producto = new Producto();
@@ -187,7 +187,11 @@ namespace PuntoDeVenta.DAO
                         producto.precio = db.DataReader["PRECIO_PRODUCTO"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["PRECIO_PRODUCTO"].ToString());
                         
                         producto.totalProductos = db.DataReader["TOTAL_PRODUCTOS"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["TOTAL_PRODUCTOS"].ToString());
+                        producto.totalMesa = db.DataReader["TOTAL_MESA"] == DBNull.Value ? 0 : Convert.ToDouble(db.DataReader["TOTAL_MESA"].ToString());
                         producto.cantidadProductos = Convert.ToInt32(db.DataReader["CANTIDAD_PRODUCTOS"].ToString());
+                        producto.ticketVenta = db.DataReader["TICKET_VENTA"].ToString();
+                        
+
 
                         mesas.Add(producto);
 
@@ -199,6 +203,41 @@ namespace PuntoDeVenta.DAO
                 throw ex;
             }
             return mesas;
+        }
+
+        public Result PagarCuenta(string ticket)
+        {
+            Result resultado = new Result();
+            try
+            {
+                using (db = new DBManager(System.Configuration.ConfigurationManager.AppSettings["Instancia"]))
+                {
+                    db.Open();
+                    db.CreateParameters(1);
+                    db.AddParameters(0, "@ticketVenta", ticket);
+
+                    db.ExecuteReader(CommandType.StoredProcedure, "SP_RESTAURANTE_PAGAR_PRODUCTOS");
+
+                    if (db.DataReader.Read())
+                    {
+                        resultado.estatus = Convert.ToInt32(db.DataReader["ESTATUS"].ToString());
+
+                        if (resultado.estatus == 200)
+                        {
+                            resultado.mensaje = db.DataReader["MENSAJE"].ToString();
+                        }
+                        else
+                        {
+                            resultado.mensaje = db.DataReader["error_message"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return resultado;
         }
 
         #endregion

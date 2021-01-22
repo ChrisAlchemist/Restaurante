@@ -209,6 +209,7 @@ namespace PuntoDeVenta.DAO
             return resultado;
         }
 
+        
 
     }
     #endregion Funciones

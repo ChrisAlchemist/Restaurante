@@ -90,5 +90,18 @@ namespace PuntoDeVenta.BLL
                 throw ex;
             }
         }
+
+        public Result PagarCuenta(string ticket)
+        {
+            try
+            {
+                return mesaDAO.PagarCuenta(ticket);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

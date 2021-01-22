@@ -116,6 +116,8 @@ namespace PuntoDeVenta.Vistas
                     dgvProductosMesa.Columns[5].Visible = true;
                     i++;
                 }
+                LblTotalCuenta.Text = productos[0].totalMesa.ToString();
+                lblTicket.Text = productos[0].ticketVenta.ToString();
             }
             catch (Exception ex)
             {
@@ -205,6 +207,29 @@ namespace PuntoDeVenta.Vistas
                     }
                     //this.CargaMesasGrid();
                     FrmGenerarCuenta_Load(null,null);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utilidades.MuestraErrores(ex.Message);
+            }
+        }
+
+        private void BtnCobrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+
+                DialogResult confirmarOperacion = Utilidades.MuestraPregunta("¿Estas Seguro de cobrar al cuenta ?");
+                if (confirmarOperacion == DialogResult.OK)
+                {
+                    
+                    Utilidades.MuestraInfo("Total a cobrar: "+ LblTotalCuenta.Text);
+                    Result result = new Result();
+                    result = mesaBLL.PagarCuenta(lblTicket.Text.ToString());
+                    this.Close();
                 }
             }
             catch (Exception ex)

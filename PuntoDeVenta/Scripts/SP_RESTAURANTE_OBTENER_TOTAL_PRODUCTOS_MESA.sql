@@ -46,8 +46,9 @@ as
 					p.NOMBRE_PRODUCTO,
 					m.NOMBRE_MESA,
 					m.RESERVADA,
-					(select sum(precio_producto) from TBL_RESTAURANTE_MESAS_PRODUCTOS where num_mesa =mp.num_mesa) TOTAL_MESA
-
+					(select sum(precio_producto) from TBL_RESTAURANTE_MESAS_PRODUCTOS where num_mesa =mp.num_mesa) TOTAL_MESA,
+					mp.TICKET_VENTA
+				
 				from 
 					TBL_RESTAURANTE_MESAS_PRODUCTOS mp
 					join TBL_RESTAURANTE_PRODUCTOS p

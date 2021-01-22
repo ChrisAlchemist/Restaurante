@@ -20,5 +20,7 @@ namespace PuntoDeVenta.Entidades
 
         public int cantidadProductos { get; set; }
         public double totalProductos { get; set; }
+        public double totalMesa { get; set; }
+        public string ticketVenta { get; set; }
     }
 }

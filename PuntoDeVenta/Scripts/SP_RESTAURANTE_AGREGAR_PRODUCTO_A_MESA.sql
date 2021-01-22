@@ -32,7 +32,8 @@ as
 						@error_severity varchar(255) = '',
 						@error_procedure varchar(255) = '',
 						@mensaje varchar(max) = '',		
-						@precioProducto money
+						@precioProducto money,
+						@ticket varchar(12)
 
 					
 			end -- inicio
@@ -48,8 +49,9 @@ as
 						if exists(select 1 from PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS where codigo = @codigoProducto and  CANTIDAD_EXISTENCIA>0)
 						begin
 							select @precioProducto = precio from PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS where codigo = @codigoProducto 
-							insert into PuntoDeVenta..TBL_RESTAURANTE_MESAS_PRODUCTOS(NUM_MESA,CODIGO_PRODUCTO, PRECIO_PRODUCTO,FECHA_ALTA,PAGADO)
-							values (@numMesa,@codigoProducto,@precioProducto,GETDATE(), 0) 
+							select @ticket = TICKET from TBL_RESTAURANTE_TICKETS_VENTA where NUM_MESA = @numMesa and TICKET_CERRADO = 0
+							insert into PuntoDeVenta..TBL_RESTAURANTE_MESAS_PRODUCTOS(NUM_MESA,CODIGO_PRODUCTO, PRECIO_PRODUCTO,FECHA_ALTA,PAGADO, TICKET_VENTA)
+							values (@numMesa,@codigoProducto,@precioProducto,GETDATE(), 0, @ticket) 
 							update PuntoDeVenta..TBL_RESTAURANTE_PRODUCTOS set CANTIDAD_EXISTENCIA = CANTIDAD_EXISTENCIA-1 where codigo = @codigoProducto
 							select @estatus = 200, @mensaje = 'Agregado exitosamente.'
 						end
