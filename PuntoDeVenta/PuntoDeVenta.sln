@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuntoDeVenta.Entidades", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuntoDeVenta.UTILS", "PuntoDeVenta.UTILS\PuntoDeVenta.UTILS.csproj", "{D2A6DFA7-8A0C-4BED-8F10-E2A378D57F60}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LasCabañasInstalador", "LasCabañasInstalador\LasCabañasInstalador.vdproj", "{0ECD2F86-49FA-494A-8B3E-547CE0B2DDC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,8 @@ Global
 		{D2A6DFA7-8A0C-4BED-8F10-E2A378D57F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2A6DFA7-8A0C-4BED-8F10-E2A378D57F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2A6DFA7-8A0C-4BED-8F10-E2A378D57F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ECD2F86-49FA-494A-8B3E-547CE0B2DDC3}.Debug|Any CPU.ActiveCfg = Debug
+		{0ECD2F86-49FA-494A-8B3E-547CE0B2DDC3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
