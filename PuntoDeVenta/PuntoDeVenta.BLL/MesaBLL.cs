@@ -95,6 +95,7 @@ namespace PuntoDeVenta.BLL
         {
             try
             {
+				
                 return mesaDAO.PagarCuenta(ticket);
             }
             catch (Exception ex)
